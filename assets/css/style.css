@@ -1,0 +1,53 @@
+body, html {
+    height: 100%;
+    font-family: 'Kanit', cursive !important;
+    font-size: 0.95rem !important;
+}
+.bg {
+    background: #56baed;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+    clip-path: polygon(0 0, 55% 0, 45% 100%, 0% 100%);
+}
+.canvas{
+    height: 300px!important;
+}
+.toggle.ios, .toggle-on.ios, .toggle-off.ios { 
+    border-radius: 20px; 
+    font-weight: 100px;
+}
+.toggle.ios .toggle-handle { 
+    border-radius: 20px; 
+}
+.toggle-on.btn {
+    padding-right: 19px;
+    font-weight: 100 !important;
+}
+.btn {
+    font-size: inherit !important;
+}
+
+.card, .small-box, .small-box-footer{
+    border-radius: 15px !important;
+}
+.small-box h1{
+    font-size: 2rem !important;
+}
+
+.rtl{
+    direction: rtl !important;
+}
+
+@media (max-width: 1200px) {
+    .small-box h1 {
+        font-size: 1.7rem !important;
+    }
+}
+
+@media (max-width: 767px) {
+    .small-box h1 {
+        font-size: 1.4rem !important;
+    }
+}
