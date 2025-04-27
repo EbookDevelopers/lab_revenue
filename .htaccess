@@ -1,3 +1,27 @@
-RewriteEngine ON
+# ไฟล์ .htaccess ใน directory /lab_revenue/
+RewriteEngine On
+RewriteBase /lab_revenue/
+
+# ถ้าเป็นไฟล์หรือไดเรกทอรีที่มีอยู่จริง ให้เข้าถึงโดยตรง
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# กฎพิเศษสำหรับหน้าหลัก (ถ้าเรียก /lab_revenue/ ให้ไปที่ login.php)
+RewriteRule ^$ login.php [L]
+
+# สำหรับ URL ที่ไม่มีนามสกุลไฟล์ ให้เพิ่ม .php
+RewriteCond %{REQUEST_URI} !\.php$
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.*)$ $1.php [L]
+
+# เพิ่มกฎสำหรับกรณีที่มีพารามิเตอร์ (เช่น ?id=1)
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^([^\.]+)$ $1.php [NC,L]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !\.php
+RewriteCond %{QUERY_STRING} .+
+RewriteRule ^([^/]+)$ $1.php [L]
+
+<Files alogin>
+    ForceType application/x-httpd-php
+</Files>
