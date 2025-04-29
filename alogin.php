@@ -1,3 +1,13 @@
+<?php
+function getBaseUrl() {
+    return '/lab_revenue/';
+}
+
+function createUrl($path) {
+    return getBaseUrl() . ltrim($path, '/');
+}
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -33,7 +43,7 @@
                 </form>
                 <div class="row mt-2">
                     <div class="col-sm-12 text-right">
-                        <a href="/lab_revenue/login" class="text-primary">Staff Mode</a>
+                        <a href="<?php echo createUrl(''); ?>" id="adminModeLink">Staff Mode</a>
                     </div>
                 </div>
             </div>
@@ -47,17 +57,30 @@
 
     <!-- Sweet Alert -->
     <script src="plugins/sweetalert2/sweetalert2.min.js"></script>
+
     <script>
-        $('#adminLoginForm').on('submit', function(e) {
-            e.preventDefault();
-            $.post('service/auth/check_admin_login.php', $(this).serialize(), function(res) {
-                if (res === 'success') {
-                    location.href = '/lab_revenue/admin_dashboard';
-                } else {
-                    Swal.fire('ผิดพลาด', 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง', 'error');
-                }
-            });
+    $('#adminLoginForm').on('submit', function(e) {
+    e.preventDefault();
+    $.ajax({
+        url: '<?php echo createUrl("service/auth/check_admin_login"); ?>',
+        method: 'POST',
+        data: $(this).serialize(),
+        success: function(res) {
+            if (res === 'success') {
+                //เปลี่ยน URL ให้ชี้ไปที่ pages/admin_dashboard
+                location.href = '<?php echo createUrl("pages/admin_dashboard/"); ?>';
+            } else {
+                Swal.fire('ผิดพลาด', 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง', 'error');
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error('Error:', error);
+            //console.log('Status:', status);
+            //console.log('Response:', xhr.responseText);
+            Swal.fire('ผิดพลาด', 'เกิดข้อผิดพลาดในการเชื่อมต่อกับเซิร์ฟเวอร์', 'error');
+            }
         });
+    });
     </script>
 </body>
 

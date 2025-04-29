@@ -70,16 +70,19 @@ $is_admin = ($_SESSION['staff_permission_id'] == 1);
                         </div>
                     </div>
 
-                    <div class="col-md-6">
-                        <canvas id="login7daysChart" height="100"></canvas>
-                    </div>
+
                 </div>
 
                 <div class="row mt-4">
                     <div class="col-md-6">
                         <canvas id="top5DeptChart" height="100"></canvas>
                     </div>
-                    <div class="col-md-6 text-right mt-4">
+                    <div class="col-md-6">
+                        <canvas id="login7daysChart" height="100"></canvas>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-12 text-right mt-4">
                         <a href="/lab_revenue/login_stats" class="btn btn-outline-primary"><i class="fas fa-history"></i> ดูประวัติการเข้าใช้งานทั้งหมด</a>
                     </div>
                 </div>
@@ -102,7 +105,7 @@ $is_admin = ($_SESSION['staff_permission_id'] == 1);
 
     <!-- ChartJS -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
+
     <script>
         $(document).ready(function() {
             $('#logoutBtn').click(function(e) {

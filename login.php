@@ -1,6 +1,13 @@
 <?php
+function getBaseUrl() {
+    return '/lab_revenue/';
+}
 
+function createUrl($path) {
+    return getBaseUrl() . ltrim($path, '/');
+}
 ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -15,7 +22,6 @@
   <link rel="stylesheet" href="assets/css/adminlte.min.css">
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
-
 </head>
 
 <body>
@@ -50,7 +56,7 @@
               </form>
               <div class="row ml-auto">
                 <div class="col-sm-12 text-right mt-2">
-                  <a href="/lab_revenue/alogin" class="text-primary">Administrator Mode</a>
+                  <a href="<?php echo createUrl('admin'); ?>" id="adminModeLink">Administrator Mode</a>
                 </div>
               </div>
             </div>
@@ -68,17 +74,41 @@
   <script src="plugins/sweetalert2/sweetalert2.min.js"></script>
 
   <script>
-        $('#formLogin').on('submit', function(e) {
-            e.preventDefault();
-            $.post('service/auth/check_staff_login.php', $(this).serialize(), function(res) {
-                if (res === 'success') {
-                    location.href = '/lab_revenue/dashboard';
-                } else {
-                    Swal.fire('ผิดพลาด', 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง', 'error');
-                }
-            });
+$('#formLogin').on('submit', function(e) {
+    e.preventDefault();
+    $.ajax({
+        url: '<?php echo createUrl("service/auth/check_staff_login"); ?>',
+        method: 'POST',
+        data: $(this).serialize(),
+        success: function(res) {
+            if (res === 'success') {
+                location.href = '<?php echo createUrl("pages/dashboard/"); ?>';
+            } else {
+                Swal.fire('ผิดพลาด', 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง', 'error');
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error('Error:', error);
+            console.log('Status:', status);
+            console.log('Response:', xhr.responseText);
+            Swal.fire('ผิดพลาด', 'เกิดข้อผิดพลาดในการเชื่อมต่อกับเซิร์ฟเวอร์', 'error');
+        }
+    });
+});
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    var adminLink = document.getElementById('adminModeLink');
+    
+    if (adminLink) {
+        adminLink.addEventListener('click', function(e) {
+            // ลบ e.preventDefault() ออก และใช้การ redirect ปกติ
+            window.location.href = this.href;
         });
-    </script>
+    }
+});
+
+  </script>
 </body>
 
 </html>

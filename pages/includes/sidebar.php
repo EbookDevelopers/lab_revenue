@@ -70,43 +70,57 @@ function isActive($data)
                         <p>หน้าหลัก</p>
                     </a>
                 </li>
-                <?php if ((isset($_SESSION['staff_permission_id']) && in_array($_SESSION['staff_permission_id'], [1, 4])) || isset($_SESSION['admin_id'])): ?>
+                <?php if ((isset($_SESSION['staff_permission_id']) && in_array($_SESSION['staff_permission_id'], [1, 3, 5])) || isset($_SESSION['admin_id'])): ?>
                     <li class="nav-item">
-                        <a href="../test_records/index.php" class="nav-link <?php echo isActive('test_records') ?>">
+                        <a href="/lab_revenue/send_book" class="nav-link <?php echo isActive('send_book') ?>">
+                            <i class="nav-icon fas fa-book"></i>
+                            <p>หนังสือส่งตรวจ</p>
+                        </a>
+                    </li>
+                <?php endif; ?>
+                <?php if ((isset($_SESSION['staff_permission_id']) && in_array($_SESSION['staff_permission_id'], [1, 5])) || isset($_SESSION['admin_id'])): ?>
+                    <li class="nav-item">
+                        <a href="/lab_revenue/test_records" class="nav-link <?php echo isActive('test_records') ?>">
                             <i class="nav-icon fas fa-notes-medical"></i>
                             <p>ข้อมูลการตรวจ</p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="/lab_revenue/patients" class="nav-link <?php echo isActive('patients') ?>">
+                            <i class="nav-icon fas fa-users"></i>
+                            <p>ข้อมูลผู้เข้ารับบริการ</p>
+                        </a>
+                    </li>
                 <?php endif; ?>
                 <?php if ((isset($_SESSION['staff_permission_id']) && in_array($_SESSION['staff_permission_id'], [1, 2])) || isset($_SESSION['admin_id'])): ?>
-                <li class="nav-item">
-                    <a href="../debtors/index.php" class="nav-link <?php echo isActive('debtors') ?>">
-                        <i class="nav-icon fas fa-users"></i>
-                        <p>ลูกหนี้</p>
-                    </a>
-                </li>
+                    <li class="nav-item">
+                        <a href="../debtors/index.php" class="nav-link <?php echo isActive('debtors') ?>">
+                            <i class="nav-icon fas fa-users"></i>
+                            <p>ลูกหนี้</p>
+                        </a>
+                    </li>
                 <?php endif; ?>
                 <?php if ((isset($_SESSION['staff_permission_id']) && in_array($_SESSION['staff_permission_id'], [1, 3])) || isset($_SESSION['admin_id'])): ?>
-                <li class="nav-item">
-                    <a href="../invoices/index.php" class="nav-link <?php echo isActive('invoices') ?>">
-                        <i class="nav-icon fas fa-file-invoice"></i>
-                        <p>การแจ้งหนี้</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="../billing/index.php" class="nav-link <?php echo isActive('billing') ?>">
-                        <i class="nav-icon fas fa-money-bill-wave"></i>
-                        <p>การชำระเงิน</p>
-                    </a>
-                </li>
+                    <li class="nav-item">
+                        <a href="../invoices/index.php" class="nav-link <?php echo isActive('invoices') ?>">
+                            <i class="nav-icon fas fa-file-invoice"></i>
+                            <p>การแจ้งหนี้</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../billing/index.php" class="nav-link <?php echo isActive('billing') ?>">
+                            <i class="nav-icon fas fa-money-bill-wave"></i>
+                            <p>การชำระเงิน</p>
+                        </a>
+                    </li>
                 <?php endif; ?>
                 <?php if ((isset($_SESSION['staff_permission_id']) && in_array($_SESSION['staff_permission_id'], [1, 4])) || isset($_SESSION['admin_id'])): ?>
-                <li class="nav-item">
-                    <a href="../debt_collection/index.php" class="nav-link <?php echo isActive('debt_collection') ?>">
-                        <i class="nav-icon fas fa-phone"></i>
-                        <p>การติดตามทวงถาม</p>
-                    </a>
-                </li>
+                    <li class="nav-item">
+                        <a href="../debt_collection/index.php" class="nav-link <?php echo isActive('debt_collection') ?>">
+                            <i class="nav-icon fas fa-phone"></i>
+                            <p>การติดตามทวงถาม</p>
+                        </a>
+                    </li>
                 <?php endif; ?>
                 <li class="nav-item">
                     <a href="../report/index.php" class="nav-link <?php echo isActive('report') ?>">
