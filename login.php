@@ -35,7 +35,7 @@ function createUrl($path) {
             <h4 class="text-center">เข้าสู่ระบบหลังบ้าน</h4>
             <div class="card-body">
               <!-- HTML Form Login -->
-              <form id="formLogin">
+              <form id="loginForm">
                 <div class="form-group col-sm-12">
                   <div class="input-group">
                     <div class="input-group-prepend">
@@ -74,7 +74,7 @@ function createUrl($path) {
   <script src="plugins/sweetalert2/sweetalert2.min.js"></script>
 
   <script>
-$('#formLogin').on('submit', function(e) {
+$('#loginForm').on('submit', function(e) {
     e.preventDefault();
     $.ajax({
         url: '<?php echo createUrl("service/auth/check_staff_login"); ?>',

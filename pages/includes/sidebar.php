@@ -65,14 +65,14 @@ function isActive($data)
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
-                    <a href="/lab_revenue/dashboard" class="nav-link <?php echo isActive('dashboard') ?>">
+                    <a href="/lab_revenue/pages/dashboard" class="nav-link <?php echo isActive('dashboard') ?>">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>หน้าหลัก</p>
                     </a>
                 </li>
                 <?php if ((isset($_SESSION['staff_permission_id']) && in_array($_SESSION['staff_permission_id'], [1, 3, 5])) || isset($_SESSION['admin_id'])): ?>
                     <li class="nav-item">
-                        <a href="/lab_revenue/send_book" class="nav-link <?php echo isActive('send_book') ?>">
+                        <a href="/lab_revenue/pages/send_book" class="nav-link <?php echo isActive('send_book') ?>">
                             <i class="nav-icon fas fa-book"></i>
                             <p>หนังสือส่งตรวจ</p>
                         </a>
@@ -102,13 +102,13 @@ function isActive($data)
                 <?php endif; ?>
                 <?php if ((isset($_SESSION['staff_permission_id']) && in_array($_SESSION['staff_permission_id'], [1, 3])) || isset($_SESSION['admin_id'])): ?>
                     <li class="nav-item">
-                        <a href="../invoices/index.php" class="nav-link <?php echo isActive('invoices') ?>">
+                        <a href="/lab_revenue/pages/invoices" class="nav-link <?php echo isActive('invoices') ?>">
                             <i class="nav-icon fas fa-file-invoice"></i>
                             <p>การแจ้งหนี้</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="../billing/index.php" class="nav-link <?php echo isActive('billing') ?>">
+                        <a href="/lab_revenue/pages/billing" class="nav-link <?php echo isActive('billing') ?>">
                             <i class="nav-icon fas fa-money-bill-wave"></i>
                             <p>การชำระเงิน</p>
                         </a>
@@ -123,14 +123,14 @@ function isActive($data)
                     </li>
                 <?php endif; ?>
                 <li class="nav-item">
-                    <a href="../report/index.php" class="nav-link <?php echo isActive('report') ?>">
+                    <a href="/lab_revenue/pages/report/" class="nav-link <?php echo isActive('report') ?>">
                         <i class="nav-icon fas fa-chart-bar"></i>
                         <p>รายงาน</p>
                     </a>
                 </li>
                 <li class="nav-header">ตั้งค่าระบบบัญชีผู้ใช้งาน</li>
                 <li class="nav-item">
-                    <a href="/lab_revenue/user" class="nav-link <?php echo isActive('user') ?>">
+                    <a href="/lab_revenue/pages/user" class="nav-link <?php echo isActive('user') ?>">
                         <i class="nav-icon fas fa-user"></i>
                         <p>บัญชีผู้ใช้งาน</p>
                     </a>
@@ -139,13 +139,13 @@ function isActive($data)
                 //session_start();
                 if (isset($_SESSION['admin_id'])) { ?>
                     <li class="nav-item">
-                        <a href="/lab_revenue/admin_dashboard" class="nav-link <?php echo isActive('admin_dashboard') ?>">
+                        <a href="/lab_revenue/pages/admin_dashboard" class="nav-link <?php echo isActive('admin_dashboard') ?>">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>Dashbard ผู้ดูแลระบบ</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/lab_revenue/admin" class="nav-link <?php echo isActive('admin') ?>">
+                        <a href="/lab_revenue/pages/admin" class="nav-link <?php echo isActive('admin') ?>">
                             <i class="nav-icon fas fa-user-cog"></i>
                             <p>จัดการข้อมูลผู้ใช้งาน</p>
                         </a>
@@ -157,13 +157,13 @@ function isActive($data)
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/lab_revenue/logs" class="nav-link <?php echo isActive('logs') ?>">
+                        <a href="/lab_revenue/pages/logs" class="nav-link <?php echo isActive('logs') ?>">
                             <i class="nav-icon fas fa-book"></i>
                             <p>ประวัติการเข้าใช้งาน</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/lab_revenue/setting" class="nav-link <?php echo isActive('setting') ?>">
+                        <a href="/lab_revenue/pages/setting" class="nav-link <?php echo isActive('setting') ?>">
                             <i class="nav-icon fas fa-cogs"></i>
                             <p>ตั้งค่าข้อมูลพื้นฐาน</p>
                         </a>
